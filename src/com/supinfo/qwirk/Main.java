@@ -1,18 +1,31 @@
 package com.supinfo.qwirk;
 
 import com.supinfo.qwirk.Database.ApplicationData;
+import com.supinfo.qwirk.Database.UserDTO;
+import com.supinfo.qwirk.Entity.User;
 import com.supinfo.qwirk.Frame.FrameLoginScreen;
 import com.supinfo.qwirk.Frame.FrameMainScreen;
+
+import java.sql.SQLException;
 
 /**
  * Created by Boufle on 12/12/2016.
  */
 public class Main {
     public static void main(String[] args) {
-
-        FrameLoginScreen frameMainScreen = new FrameLoginScreen();
-
         ApplicationData applicationData = new ApplicationData();
-        applicationData.stopbase();
+        applicationData.connect();
+
+        FrameLoginScreen frameMainScreen = new FrameLoginScreen(applicationData);
+
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                applicationData.logout();
+                applicationData.stopbase();
+            }
+        }));
+
+       // applicationData.stopbase();
     }
 }
