@@ -1,5 +1,6 @@
 package com.supinfo.qwirk;
 
+import com.supinfo.qwirk.Database.ApplicationData;
 import com.supinfo.qwirk.Frame.FrameMainScreen;
 
 /**
@@ -10,5 +11,7 @@ public class Main {
 
         FrameMainScreen frameMainScreen = new FrameMainScreen();
 
+        ApplicationData applicationData = new ApplicationData();
+        applicationData.stopbase();
     }
 }
