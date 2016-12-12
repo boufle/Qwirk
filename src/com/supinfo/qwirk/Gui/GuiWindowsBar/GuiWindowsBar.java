@@ -25,4 +25,13 @@ public class GuiWindowsBar extends JPanel {
         add(guiWindowsBarProfil, BorderLayout.PAGE_START);
         add(guiWindowsBarMenu, BorderLayout.CENTER);
     }
+
+
+    public void setSelectedFeed(){
+        guiWindowsBarMenu.setSelectedFeed();
+    }
+
+    public void setSelectedHome(){
+        guiWindowsBarMenu.setSelectedHome();
+    }
 }

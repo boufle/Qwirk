@@ -12,13 +12,13 @@ import java.awt.geom.RoundRectangle2D;
 /**
  * Created by Boufle on 12/12/2016.
  */
-public class FrameMainScreen extends JFrame{
+public class DialogFeedScreen extends JDialog {
+
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
     protected GuiChat guiChat = new GuiChat();
 
-    public FrameMainScreen(){
-
+    private DialogFeedScreen(){
         setUndecorated(true);
         setSize(1200,800);
 /*        addComponentListener(new ComponentAdapter() {
@@ -32,11 +32,22 @@ public class FrameMainScreen extends JFrame{
         setVisible(true);
     }
 
-
-
     public void init(){
 
         add(guiChat, BorderLayout.LINE_END);
         add(guiWindowsBar, BorderLayout.LINE_START);
+    }
+
+    private static DialogFeedScreen INSTANCE = null;
+
+    public static synchronized DialogFeedScreen getInstance(){
+        if (INSTANCE == null){
+            INSTANCE = new DialogFeedScreen();
+        }
+        return INSTANCE;
+    }
+
+    public GuiWindowsBar getGuiWindowsBar() {
+        return guiWindowsBar;
     }
 }
