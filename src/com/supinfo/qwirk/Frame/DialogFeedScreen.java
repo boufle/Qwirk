@@ -2,8 +2,10 @@ package com.supinfo.qwirk.Frame;
 
 import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
+import com.supinfo.qwirk.Gui.GuiWindowsFeed.GuiWindowsFeed;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -16,17 +18,11 @@ public class DialogFeedScreen extends JDialog {
 
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
-    protected GuiChat guiChat = new GuiChat();
+    protected GuiWindowsFeed guiWindowsFeed = new GuiWindowsFeed();
 
     private DialogFeedScreen(){
         setUndecorated(true);
         setSize(1200,800);
-/*        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 25, 25));
-            }
-        });*/
         setLayout(new BorderLayout());
         init();
         setVisible(true);
@@ -34,8 +30,8 @@ public class DialogFeedScreen extends JDialog {
 
     public void init(){
 
-        add(guiChat, BorderLayout.LINE_END);
         add(guiWindowsBar, BorderLayout.LINE_START);
+        add(guiWindowsFeed, BorderLayout.CENTER);
     }
 
     private static DialogFeedScreen INSTANCE = null;

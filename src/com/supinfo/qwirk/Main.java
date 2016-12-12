@@ -1,6 +1,7 @@
 package com.supinfo.qwirk;
 
 import com.supinfo.qwirk.Database.ApplicationData;
+import com.supinfo.qwirk.Frame.FrameLoginScreen;
 import com.supinfo.qwirk.Frame.FrameMainScreen;
 
 /**
@@ -9,7 +10,7 @@ import com.supinfo.qwirk.Frame.FrameMainScreen;
 public class Main {
     public static void main(String[] args) {
 
-        FrameMainScreen frameMainScreen = new FrameMainScreen();
+        FrameLoginScreen frameMainScreen = new FrameLoginScreen();
 
         ApplicationData applicationData = new ApplicationData();
         applicationData.stopbase();
