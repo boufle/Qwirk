@@ -5,6 +5,7 @@ import com.supinfo.qwirk.Database.UserDTO;
 import com.supinfo.qwirk.Entity.User;
 import com.supinfo.qwirk.Frame.FrameLoginScreen;
 import com.supinfo.qwirk.Frame.FrameMainScreen;
+import com.supinfo.qwirk.Gui.utils.utils;
 
 import java.sql.SQLException;
 
@@ -25,7 +26,7 @@ public class Main {
                 applicationData.stopbase();
             }
         }));
-
+        utils.getInstance();
        // applicationData.stopbase();
     }
 }

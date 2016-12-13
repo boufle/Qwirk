@@ -1,9 +1,13 @@
 package com.supinfo.qwirk.Gui.GuiWindowsFeed;
 
 import com.supinfo.qwirk.Gui.utils.GuiButton;
+import com.supinfo.qwirk.Gui.utils.utils;
+import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Boufle on 12/12/2016.
@@ -13,10 +17,15 @@ public class GuiWindowsFeed extends JPanel {
     JPanel bot = new JPanel();
     protected JPanel body = new JPanel();
     protected JPanel pagination = new JPanel();
+    protected JPanel top = new JPanel();
     protected GuiButton leftarrow = new GuiButton();
     protected GuiButton rightarrow = new GuiButton();
+    int posX ;
+    int posY ;
+
 
     public GuiWindowsFeed(){
+      //  this.getParent();
 
         setLayout(new BorderLayout());
         prepareFeed(body);
@@ -30,7 +39,36 @@ public class GuiWindowsFeed extends JPanel {
         //pagination.add(leftarrow, BorderLayout.LINE_START);
       //  pagination.add(rightarrow, BorderLayout.LINE_END);
         bot.add(pagination, BorderLayout.LINE_END);
-        add(bot, BorderLayout.PAGE_END);
+       // add(bot, BorderLayout.PAGE_END);
+
+        top.setPreferredSize(new Dimension(0,69));
+        top.setBackground(new Color(38,51,67));
+        top.setLayout(new BorderLayout());
+        add(top, BorderLayout.PAGE_START);
+
+        top.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                posX = e.getX();
+                posY = e.getY();
+            }
+        });
+
+        top.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                int depX = e.getX() - posX;
+                int depY = e.getY() - posY;
+                //JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(e.getComponent());
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(e.getComponent());
+
+                topFrame.setLocation(topFrame.getX() + depX, topFrame.getY() + depY);
+                utils.getInstance().setPosX(topFrame.getX() + depX);
+                utils.getInstance().setPosY(topFrame.getY() + depY);
+            }
+        });
 
 
     }

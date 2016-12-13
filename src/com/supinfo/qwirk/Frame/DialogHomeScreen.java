@@ -2,6 +2,7 @@ package com.supinfo.qwirk.Frame;
 
 import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
+import com.supinfo.qwirk.Gui.utils.utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 /**
  * Created by Boufle on 12/12/2016.
  */
-public class DialogHomeScreen extends JDialog {
+public class DialogHomeScreen extends JFrame {
 
 
 
@@ -19,6 +20,7 @@ public class DialogHomeScreen extends JDialog {
     private DialogHomeScreen(){
         setUndecorated(true);
         setSize(1200,800);
+        setLocation(utils.getInstance().getPosX(), utils.getInstance().getPosY());
 /*        addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {

@@ -1,5 +1,6 @@
 package com.supinfo.qwirk.Frame;
 
+import com.supinfo.qwirk.Database.ApplicationData;
 import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
 
@@ -17,7 +18,7 @@ public class FrameMainScreen extends JFrame{
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
     protected GuiChat guiChat = new GuiChat();
 
-    public FrameMainScreen(){
+    public FrameMainScreen(ApplicationData applicationData){
 
         setUndecorated(true);
         setSize(1200,800);

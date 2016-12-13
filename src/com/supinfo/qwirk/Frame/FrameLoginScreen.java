@@ -53,6 +53,8 @@ public class FrameLoginScreen extends JFrame implements ActionListener {
 
 
                 applicationData.setCurrentUser(user);
+                this.dispose();
+                DialogFeedScreen.getInstance();
              }
         } catch (SQLException ex) {
             ex.printStackTrace();
