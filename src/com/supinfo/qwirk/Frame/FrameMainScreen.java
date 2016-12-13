@@ -16,7 +16,6 @@ import java.awt.geom.RoundRectangle2D;
 public class FrameMainScreen extends JFrame{
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
-    protected GuiChat guiChat = new GuiChat();
 
     public FrameMainScreen(ApplicationData applicationData){
 
@@ -37,7 +36,6 @@ public class FrameMainScreen extends JFrame{
 
     public void init(){
 
-        add(guiChat, BorderLayout.LINE_END);
         add(guiWindowsBar, BorderLayout.LINE_START);
     }
 }

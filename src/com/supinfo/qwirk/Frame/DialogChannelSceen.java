@@ -8,15 +8,18 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Boufle on 12/12/2016.
+ * Created by Boufle on 13/12/2016.
  */
-public class DialogHomeScreen extends JFrame {
+public class DialogChannelSceen extends JFrame {
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
+    protected GuiChat guiChat;
+    protected int chanID;
 
-    private DialogHomeScreen(){
+    private DialogChannelSceen(int chanID){
         setUndecorated(true);
         setSize(1400,800);
+        guiChat = new GuiChat(chanID);
         setLocation(utils.getInstance().getPosX(), utils.getInstance().getPosY());
 /*        addComponentListener(new ComponentAdapter() {
             @Override
@@ -31,15 +34,19 @@ public class DialogHomeScreen extends JFrame {
 
     public void init(){
 
+        add(guiChat, BorderLayout.CENTER);
         add(guiWindowsBar, BorderLayout.LINE_START);
 
     }
 
-    private static DialogHomeScreen INSTANCE = null;
+    private static DialogChannelSceen INSTANCE = null;
 
-    public static synchronized DialogHomeScreen getInstance(){
+    public static synchronized DialogChannelSceen getInstance(int chanID){
         if (INSTANCE == null){
-            INSTANCE = new DialogHomeScreen();
+            INSTANCE = new DialogChannelSceen(chanID);
+        }
+        else {
+            INSTANCE = new DialogChannelSceen(chanID);
         }
         return INSTANCE;
     }

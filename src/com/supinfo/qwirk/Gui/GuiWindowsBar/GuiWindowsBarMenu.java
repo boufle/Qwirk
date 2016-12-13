@@ -1,5 +1,7 @@
 package com.supinfo.qwirk.Gui.GuiWindowsBar;
 
+import com.supinfo.qwirk.Database.ApplicationData;
+import com.supinfo.qwirk.Entity.Channel;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiMenuButton.GuiWindowsBarMenuFeedButton;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiMenuButton.GuiWindowsBarMenuHomeButton;
 import com.supinfo.qwirk.Listener.GuiWindowsBarMenuListener;
@@ -15,7 +17,9 @@ public class GuiWindowsBarMenu extends JPanel{
     protected GuiWindowsBarMenuFeedButton guiWindowsBarMenuFeedButton = new GuiWindowsBarMenuFeedButton();
     protected GuiWindowsBarMenuHomeButton guiWindowsBarMenuHomeButton = new GuiWindowsBarMenuHomeButton();
     protected JPanel add = new JPanel();
-    protected JLabel ici = new JLabel("<html><body>Vos <br> Channels</body></html>");
+    protected JLabel ici = new JLabel("<html><body>Vos <br> Channels</body></html>", SwingConstants.CENTER);
+    protected JPanel test = new JPanel();
+    protected JScrollPane scroll = new JScrollPane(test);
 
 
     public GuiWindowsBarMenu(){
@@ -26,9 +30,22 @@ public class GuiWindowsBarMenu extends JPanel{
         add(guiWindowsBarMenuFeedButton);
         add(guiWindowsBarMenuHomeButton);
         add.addMouseListener(new GuiWindowsBarMenuListener());
-        add(add);
+       // add(add);
         ici.setForeground(Color.WHITE);
         add(ici);
+        //test.setPreferredSize(new Dimension(90,2000));
+        test.setAutoscrolls(true);
+        scroll.setPreferredSize(new Dimension(90,200));
+        test.setLayout(new GridLayout(10,1));
+        for (Channel i: ApplicationData.getInstance().getData().getMyChannels()){
+
+            test.add(new GuiWindowsBarChannel(i.getId()));
+        }
+
+
+
+        add(scroll);
+
 
 
 
