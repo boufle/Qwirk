@@ -1,6 +1,5 @@
 package com.supinfo.qwirk.Frame;
 
-import Utils.Resizer;
 import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
 import com.supinfo.qwirk.Gui.GuiWindowsFeed.GuiWindowsFeed;
@@ -21,7 +20,7 @@ public class DialogFeedScreen extends JFrame {
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
     protected GuiWindowsFeed guiWindowsFeed = new GuiWindowsFeed();
-    protected Resizer cr = new Resizer();
+   // protected Resizer cr = new Resizer();
 
     private DialogFeedScreen(){
         setUndecorated(true);
@@ -29,7 +28,7 @@ public class DialogFeedScreen extends JFrame {
         setLocation(utils.getInstance().getPosX(), utils.getInstance().getPosY());
         setLayout(new BorderLayout());
         init();
-        cr.registerComponent(this);
+     //   cr.registerComponent(this);
         setVisible(true);
 
     }

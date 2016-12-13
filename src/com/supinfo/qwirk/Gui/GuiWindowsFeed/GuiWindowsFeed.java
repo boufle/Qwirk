@@ -1,5 +1,6 @@
 package com.supinfo.qwirk.Gui.GuiWindowsFeed;
 
+import com.supinfo.qwirk.Gui.GuiFrameControlBar.GuiFrameCrontrolBar;
 import com.supinfo.qwirk.Gui.utils.GuiButton;
 import com.supinfo.qwirk.Gui.utils.utils;
 import oracle.jrockit.jfr.JFR;
@@ -17,7 +18,7 @@ public class GuiWindowsFeed extends JPanel {
     JPanel bot = new JPanel();
     protected JPanel body = new JPanel();
     protected JPanel pagination = new JPanel();
-    protected JPanel top = new JPanel();
+    protected GuiFrameCrontrolBar top = new GuiFrameCrontrolBar();
     protected GuiButton leftarrow = new GuiButton();
     protected GuiButton rightarrow = new GuiButton();
     int posX ;
@@ -40,10 +41,6 @@ public class GuiWindowsFeed extends JPanel {
       //  pagination.add(rightarrow, BorderLayout.LINE_END);
         bot.add(pagination, BorderLayout.LINE_END);
        // add(bot, BorderLayout.PAGE_END);
-
-        top.setPreferredSize(new Dimension(0,69));
-        top.setBackground(new Color(38,51,67));
-        top.setLayout(new BorderLayout());
         add(top, BorderLayout.PAGE_START);
 
         top.addMouseListener(new MouseAdapter() {
