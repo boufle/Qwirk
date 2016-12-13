@@ -1,34 +1,30 @@
 package com.supinfo.qwirk.Frame;
 
-import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
 import com.supinfo.qwirk.Gui.GuiWindowsFeed.GuiWindowsFeed;
+import com.supinfo.qwirk.Gui.utils.GuiPanelHtml;
 import com.supinfo.qwirk.Gui.utils.utils;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.geom.RoundRectangle2D;
 
 /**
- * Created by Boufle on 12/12/2016.
+ * Created by Boufle on 13/12/2016.
  */
-public class DialogFeedScreen extends JFrame {
+public class DialogHtmlScreen extends JFrame {
 
 
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
-    protected GuiWindowsFeed guiWindowsFeed = new GuiWindowsFeed();
-   // protected Resizer cr = new Resizer();
+    protected GuiPanelHtml guiPanelHtml = new GuiPanelHtml();
+    // protected Resizer cr = new Resizer();
 
-    private DialogFeedScreen(){
+    private DialogHtmlScreen(){
         setUndecorated(true);
         setSize(1400,800);
         setLocation(utils.getInstance().getPosX(), utils.getInstance().getPosY());
         setLayout(new BorderLayout());
         init();
-     //   cr.registerComponent(this);
+        //   cr.registerComponent(this);
         setVisible(true);
 
     }
@@ -36,14 +32,14 @@ public class DialogFeedScreen extends JFrame {
     public void init(){
 
         add(guiWindowsBar, BorderLayout.LINE_START);
-        add(guiWindowsFeed, BorderLayout.CENTER);
+        add(guiPanelHtml, BorderLayout.CENTER);
     }
 
-    private static DialogFeedScreen INSTANCE = null;
+    private static DialogHtmlScreen INSTANCE = null;
 
-    public static synchronized DialogFeedScreen getInstance(){
+    public static synchronized DialogHtmlScreen getInstance(){
         if (INSTANCE == null){
-            INSTANCE = new DialogFeedScreen();
+            INSTANCE = new DialogHtmlScreen();
         }
         return INSTANCE;
     }
@@ -52,3 +48,4 @@ public class DialogFeedScreen extends JFrame {
         return guiWindowsBar;
     }
 }
+

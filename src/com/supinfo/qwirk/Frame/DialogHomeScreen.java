@@ -12,14 +12,12 @@ import java.awt.*;
  */
 public class DialogHomeScreen extends JFrame {
 
-
-
     protected GuiWindowsBar guiWindowsBar = new GuiWindowsBar();
     protected GuiChat guiChat = new GuiChat();
 
     private DialogHomeScreen(){
         setUndecorated(true);
-        setSize(1200,800);
+        setSize(1400,800);
         setLocation(utils.getInstance().getPosX(), utils.getInstance().getPosY());
 /*        addComponentListener(new ComponentAdapter() {
             @Override
@@ -36,6 +34,7 @@ public class DialogHomeScreen extends JFrame {
 
         add(guiChat, BorderLayout.LINE_END);
         add(guiWindowsBar, BorderLayout.LINE_START);
+
     }
 
     private static DialogHomeScreen INSTANCE = null;

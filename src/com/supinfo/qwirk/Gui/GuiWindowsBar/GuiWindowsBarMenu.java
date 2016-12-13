@@ -2,6 +2,7 @@ package com.supinfo.qwirk.Gui.GuiWindowsBar;
 
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiMenuButton.GuiWindowsBarMenuFeedButton;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiMenuButton.GuiWindowsBarMenuHomeButton;
+import com.supinfo.qwirk.Listener.GuiWindowsBarMenuListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,9 @@ public class GuiWindowsBarMenu extends JPanel{
 
     protected GuiWindowsBarMenuFeedButton guiWindowsBarMenuFeedButton = new GuiWindowsBarMenuFeedButton();
     protected GuiWindowsBarMenuHomeButton guiWindowsBarMenuHomeButton = new GuiWindowsBarMenuHomeButton();
+    protected JPanel add = new JPanel();
+    protected JLabel ici = new JLabel("<html><body>Vos <br> Channels</body></html>");
+
 
     public GuiWindowsBarMenu(){
 
@@ -21,6 +25,12 @@ public class GuiWindowsBarMenu extends JPanel{
 
         add(guiWindowsBarMenuFeedButton);
         add(guiWindowsBarMenuHomeButton);
+        add.addMouseListener(new GuiWindowsBarMenuListener());
+        add(add);
+        ici.setForeground(Color.WHITE);
+        add(ici);
+
+
 
     }
 

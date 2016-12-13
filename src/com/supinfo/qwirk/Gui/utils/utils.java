@@ -7,6 +7,7 @@ public class utils {
 
     int posY = 0;
     int posX = 0;
+    int feedIndex = 0;
     private static utils ourInstance = new utils();
 
     public static utils getInstance() {
@@ -27,5 +28,11 @@ public class utils {
     }
     public void setPosX(int posX){
         this.posX = posX;
+    }
+    public int getFeedIndex(){
+        return feedIndex;
+    }
+    public void setFeedIndex(int feedIndex){
+        this.feedIndex = feedIndex;
     }
 }

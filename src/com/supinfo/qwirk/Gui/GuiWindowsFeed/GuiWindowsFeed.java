@@ -1,5 +1,6 @@
 package com.supinfo.qwirk.Gui.GuiWindowsFeed;
 
+import com.supinfo.qwirk.Database.ApplicationData;
 import com.supinfo.qwirk.Gui.GuiFrameControlBar.GuiFrameCrontrolBar;
 import com.supinfo.qwirk.Gui.utils.GuiButton;
 import com.supinfo.qwirk.Gui.utils.utils;
@@ -74,9 +75,15 @@ public class GuiWindowsFeed extends JPanel {
 
         body.setLayout(new GridLayout(0,3,5,5));
         for (int i = 0; i < 12; i++){
+            try{
+                ;
+                GuiFeed guiFeed = new GuiFeed("https://image.jimcdn.com/app/cms/image/transf/dimension=360x10000:format=jpg/path/sb9ccc28c2a9d590e/image/ib4429f54ba79584a/version/1318533548/image.jpg", ApplicationData.getInstance().getData().getChannels().get(i).getName());
+                body.add(guiFeed);
+            }
+            catch (Exception e){
 
-            GuiFeed guiFeed = new GuiFeed("https://image.jimcdn.com/app/cms/image/transf/dimension=360x10000:format=jpg/path/sb9ccc28c2a9d590e/image/ib4429f54ba79584a/version/1318533548/image.jpg", "test");
-            body.add(guiFeed);
+            }
+
         }
     }
 }

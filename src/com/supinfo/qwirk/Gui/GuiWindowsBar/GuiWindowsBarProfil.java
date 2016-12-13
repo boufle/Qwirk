@@ -1,5 +1,6 @@
 package com.supinfo.qwirk.Gui.GuiWindowsBar;
 
+import com.supinfo.qwirk.Database.ApplicationData;
 import com.supinfo.qwirk.Listener.GuiWindowsBarProfilListener;
 
 import javax.imageio.ImageIO;
@@ -24,7 +25,7 @@ public class GuiWindowsBarProfil extends JPanel {
         setBackground(new Color(38,51,67));
         setPreferredSize(new Dimension(0,70));
         try {
-          url  = new URL("https://lh3.googleusercontent.com/-i-RclEmS5-8/AAAAAAAAAAI/AAAAAAAAAAA/AEMOYSBwrUXlYE616bpFhUEP5hWNoy2zfg/s32-c-mo/photo.jpg");
+          url  = new URL(ApplicationData.getInstance().getCurrentUser().getProfil_Icon());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -40,9 +41,10 @@ public class GuiWindowsBarProfil extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int x = (this.getWidth() - image.getWidth(null)) / 2;
-        int y = (this.getHeight() - image.getHeight(null)) / 2;
-        g.drawImage(image, x, y, this); // see javadoc for more info on the parameters
+       int x = (this.getWidth() - 50) / 2;
+       int y = (this.getHeight() - 50) / 2;
+        System.out.println(x +"   "+ y);
+        g.drawImage(image, x ,y,50,50, this); // see javadoc for more info on the parameters
     }
 
 
