@@ -14,6 +14,8 @@ public class User implements Serializable{
     String pass;
     String profil_Icon;
 
+
+
     public User(){};
     public User(Integer id, String pseudo, String email, String pass, String profil_Icon  ) {
         this.id = id;
