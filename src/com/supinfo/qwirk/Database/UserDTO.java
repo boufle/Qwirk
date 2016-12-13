@@ -16,13 +16,13 @@ import java.util.ArrayList;
  */
 public class UserDTO {
 
-    public static User login(ApplicationData applicationData , String user, String mdp) throws SQLException {
+    public static User login(ApplicationData applicationData , String email, String mdp) throws SQLException {
         Connection con = applicationData.getConnection();
 
         Statement stmt = null;
         User user1 = new User();
         stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from User where email='"+user+"' and pass='"+ MD5.MD5(mdp)+"'");
+        ResultSet rs = stmt.executeQuery("select * from User where email='"+email+"' and pass='"+ MD5.MD5(mdp)+"'");
 
         int rowCount = 0;
         while ( rs.next() )
@@ -31,7 +31,6 @@ public class UserDTO {
             user1.setEmail(rs.getString("email"));
             user1.setPseudo(rs.getString("pseudo"));
             user1.setProfil_Icon(rs.getString("profil_icon"));
-            user1.setEtat(rs.getInt("etat"));
 
             // Process the row.
             rowCount++;
@@ -43,6 +42,35 @@ public class UserDTO {
         }
 
         return user1;
+
+    }
+
+
+    public static User register(ApplicationData applicationData , String email, String mdp,String pseudo,String profil_Icon) throws SQLException {
+        Connection con = applicationData.getConnection();
+
+        Statement stmt = null;
+        stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from User where email='"+email+"' and pass='"+ MD5.MD5(mdp)+"'");
+
+        int rowCount = 0;
+        while ( rs.next() )
+        {
+            rowCount++;
+        }
+        if (stmt != null) { stmt.close(); }
+
+        if(rowCount != 0 ){
+            return null;
+        }else{
+
+            stmt = con.createStatement();
+            stmt.executeQuery("INSERT INTO `orleansaqwirk`.`User` (`id`, `email`, `pseudo`, `pass`, `profil_icon`, `etat`) VALUES (NULL, '"+email+"', '"+ MD5.MD5(mdp)+"', '"+ pseudo +"', '"+ profil_Icon +"', '0')");
+            if (stmt != null) { stmt.close(); }
+
+            return login(applicationData,email,mdp);
+
+        }
 
     }
 
@@ -64,7 +92,6 @@ public class UserDTO {
             user1.setEmail(rs.getString("email"));
             user1.setPseudo(rs.getString("pseudo"));
             user1.setProfil_Icon(rs.getString("profil_icon"));
-            user1.setEtat(rs.getInt("etat"));
 
             users.add(user1);
         }

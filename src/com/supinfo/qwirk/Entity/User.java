@@ -13,7 +13,6 @@ public class User implements Serializable{
     String email;
     String pass;
     String profil_Icon;
-    Integer etat;
 
     public User(){};
     public User(Integer id, String pseudo, String email, String pass, String profil_Icon  ) {
@@ -71,11 +70,5 @@ public class User implements Serializable{
         this.profil_Icon = profil_Icon;
     }
 
-    public Integer getEtat() {
-        return etat;
-    }
 
-    public void setEtat(Integer etat) {
-        this.etat = etat;
-    }
 }
