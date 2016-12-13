@@ -15,6 +15,7 @@ public class Message implements Serializable{
     String texte;
     User user;
     Channel Channel;
+    Boolean read = true;
 
     public Message(int id, java.sql.Date date, String texte, User user, Channel channel) {
         this.id = id;
@@ -54,6 +55,14 @@ public class Message implements Serializable{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 
     public com.supinfo.qwirk.Entity.Channel getChannel() {

@@ -14,8 +14,7 @@ import java.sql.SQLException;
  */
 public class Main {
     public static void main(String[] args) {
-        ApplicationData applicationData = new ApplicationData();
-        applicationData.connect();
+        ApplicationData applicationData = ApplicationData.getInstance();
 
         FrameLoginScreen frameMainScreen = new FrameLoginScreen(applicationData);
 

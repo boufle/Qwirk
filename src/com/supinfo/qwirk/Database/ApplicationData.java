@@ -6,6 +6,7 @@ import com.supinfo.qwirk.Entity.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,6 +15,10 @@ import java.util.TimerTask;
  * Created by Theo on 12/12/2016 for Qwirk.
  */
 public class ApplicationData {
+
+    private static ApplicationData applicationData=null;
+
+
     DatabaseConnection databaseConnection = null;
     private User currentUser = null;
 
@@ -21,8 +26,10 @@ public class ApplicationData {
 
 
     Timer notimeoutDB = null;
+    private Date lastupdate = new Date();
 
-    public ApplicationData() {
+    private ApplicationData() {
+
         databaseConnection = new DatabaseConnection();
     }
 
@@ -100,6 +107,39 @@ public class ApplicationData {
         ArrayList<User> myContact = UserDTO.getContacts(this);
 
         this.data = new Data(channels,myChannels,myContact);
+        startupdateMessages();
+    }
 
+
+
+    public void startupdateMessages(){
+
+            notimeoutDB.schedule( new TimerTask() {
+                public void run() {
+                    try {
+                        MessageDTO.getlastmessagesfromChannels(ApplicationData.this);
+                        databaseConnection.notimeout();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 0, 5000);
+    }
+
+
+    public Date getLastupdate() {
+        return lastupdate;
+    }
+
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
+    }
+    public synchronized static ApplicationData getInstance(){
+        if(applicationData==null){
+            applicationData = new ApplicationData();
+            applicationData.connect();
+
+        }
+        return applicationData;
     }
 }

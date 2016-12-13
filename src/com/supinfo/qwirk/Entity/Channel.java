@@ -2,6 +2,7 @@ package com.supinfo.qwirk.Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * com.supinfo.qwirk.Entity
@@ -13,6 +14,7 @@ public class Channel implements Serializable{
     String Name;
     String Description;
     Integer type;
+    private Date lastupdate= new Date();
 
     ArrayList<User> participants = new ArrayList();
     ArrayList<Message> messages = new ArrayList();
@@ -22,6 +24,14 @@ public class Channel implements Serializable{
         this.Name = name;
         this.Description = description;
         this.type = type;
+    }
+
+    public Date getLastupdate() {
+        return lastupdate;
+    }
+
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
     }
 
     public ArrayList<User> getParticipants() {
@@ -71,5 +81,13 @@ public class Channel implements Serializable{
             }
         }
         return null;
+    }
+
+    public void addMessages(ArrayList<Message> messages) {
+        getMessages().addAll(messages);
+    }
+
+    public void addMessage(Message message) {
+        getMessages().add(message);
     }
 }
