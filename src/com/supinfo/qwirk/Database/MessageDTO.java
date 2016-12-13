@@ -78,23 +78,43 @@ public class MessageDTO {
     private static void getLastMessageFromAllChannel(ApplicationData applicationData) throws SQLException {
         Connection con = applicationData.getConnection();
         Statement stmt = null;
-        Timestamp timestamp = new Timestamp(applicationData.getLastupdate().getTime());
 
-        String query = "select Channel_Message.* from Channel_Message  "
-                +" INNER join User_Channel on Channel_Message.channel=User_Channel.channel and User_Channel.user ="+applicationData.getCurrentUser().getId()+
-                " where   date >='"+timestamp +"'";
-        System.out.println(timestamp);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if(applicationData.getData().getMyChannels().size()>0){
+            stringBuilder.append( " AND channel in (");
+            for (Channel channel : applicationData.getData().getMyChannels()) {
+                stringBuilder.append(channel.getId()).append(",") ;
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length()-1);
+            stringBuilder.append( ") ");
+
+        }else {
+            return;
+        }
+
+        String query = "select Now() as dateserveur,Channel_Message.* from Channel_Message  "+
+
+                " where   date >='"+applicationData.getLastupdate() +"'" +stringBuilder.toString();
+
+        Timestamp date = null;
+       // System.out.println(applicationData.getLastupdate());
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Channel channel = applicationData.getData().getChannelByID(rs.getInt("channel"));
                 channel.addMessage(new Message(rs.getInt("id"),rs.getDate("date"),rs.getString("texte"),channel.getParticipantByID(rs.getInt("user")),channel));
-
+                date = rs.getTimestamp("dateserveur");
                 System.out.println("mouveaux message dans "+channel.getName()+" Nombre: "+rs.getString("texte"));
 
             }
-            applicationData.setLastupdate(new Date());
+            if(date==null){
+               date =  DateDTO.getdateServeur(applicationData);
+            }
+            applicationData.setLastupdate(date);
+
+            //System.out.println(applicationData.getLastupdate());
 
         } finally {
             if (stmt != null) { stmt.close(); }

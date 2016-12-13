@@ -5,6 +5,7 @@ import com.supinfo.qwirk.Entity.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -26,7 +27,7 @@ public class ApplicationData {
 
 
     Timer notimeoutDB = null;
-    private Date lastupdate = new Date();
+    private Timestamp lastupdate = null;
 
     private ApplicationData() {
 
@@ -114,24 +115,31 @@ public class ApplicationData {
 
     public void startupdateMessages(){
 
-            notimeoutDB.schedule( new TimerTask() {
+        try {
+           lastupdate= DateDTO.getdateServeur(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        notimeoutDB.schedule( new TimerTask() {
                 public void run() {
                     try {
                         MessageDTO.getlastmessagesfromChannels(ApplicationData.this);
-                        databaseConnection.notimeout();
+                        //databaseConnection.notimeout();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                 }
-            }, 0, 5000);
+            }, 0, 2000);
     }
 
 
-    public Date getLastupdate() {
+    public Timestamp getLastupdate() {
         return lastupdate;
     }
 
-    public void setLastupdate(Date lastupdate) {
+    public void setLastupdate(Timestamp lastupdate) {
         this.lastupdate = lastupdate;
     }
     public synchronized static ApplicationData getInstance(){
