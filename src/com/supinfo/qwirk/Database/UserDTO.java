@@ -64,6 +64,7 @@ public class UserDTO {
             return null;
         }else{
 
+
             stmt = con.createStatement();
             stmt.executeQuery("INSERT INTO `orleansaqwirk`.`User` (`id`, `email`, `pseudo`, `pass`, `profil_icon`, `etat`) VALUES (NULL, '"+email+"', '"+ MD5.MD5(mdp)+"', '"+ pseudo +"', '"+ profil_Icon +"', '0')");
             if (stmt != null) { stmt.close(); }
