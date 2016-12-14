@@ -103,14 +103,13 @@ public class UserDTO {
 
     public static void updateStatus(ApplicationData applicationData , Integer etatUser) throws SQLException {
 
-        String query = "UPDATE `User` SET `etat` = "+etatUser+" WHERE `User`.`id` = "+applicationData.getCurrentUser().getId();
-        Connection con = applicationData.getConnection();
-
-        Statement stmt = null;
-        ArrayList<User> users = new ArrayList<>();
-
-        stmt = con.createStatement();
-        int rs = stmt.executeUpdate(query);
+        User currentUser = applicationData.getCurrentUser();
+        if (currentUser!=null) {
+            String query = "UPDATE `User` SET `etat` = " + etatUser + " WHERE `User`.`id` = " + applicationData.getCurrentUser().getId();
+            Connection con = applicationData.getConnection();
+            Statement stmt = con.createStatement();
+            int rs = stmt.executeUpdate(query);
+        }
 
     }
 

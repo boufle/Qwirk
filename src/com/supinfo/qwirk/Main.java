@@ -2,6 +2,7 @@ package com.supinfo.qwirk;
 
 import com.supinfo.qwirk.Database.ApplicationData;
 import com.supinfo.qwirk.Database.UserDTO;
+import com.supinfo.qwirk.Entity.EtatUser;
 import com.supinfo.qwirk.Entity.User;
 import com.supinfo.qwirk.Frame.FrameLoginScreen;
 import com.supinfo.qwirk.Frame.FrameMainScreen;
@@ -16,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         ApplicationData applicationData = ApplicationData.getInstance();
 
-        FrameLoginScreen frameMainScreen = new FrameLoginScreen(applicationData);
+        FrameLoginScreen frameMainScreen = new FrameLoginScreen();
 
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {

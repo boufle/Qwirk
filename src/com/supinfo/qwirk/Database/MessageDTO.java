@@ -1,5 +1,6 @@
 package com.supinfo.qwirk.Database;
 
+import com.supinfo.qwirk.CustomException.SendMessageExeption;
 import com.supinfo.qwirk.Entity.Channel;
 import com.supinfo.qwirk.Entity.ChannelType;
 import com.supinfo.qwirk.Entity.Message;
@@ -75,6 +76,45 @@ public class MessageDTO {
 
     }
 
+    public static Message sendmessage(ApplicationData applicationData , Message message) throws  SendMessageExeption {
+        try {
+            Connection con = applicationData.getConnection();
+
+            Statement stmt = null;
+
+
+            String sql = "INSERT INTO `Channel_Message` (`id`, `date`, `texte`, `user`, `channel`) VALUES (NULL, CURRENT_TIMESTAMP, '"+ message.getTexte()+"', '"+message.getUser().getId()+"', '"+message.getChannel().getId()+"')";
+
+
+
+            try {
+                stmt = con.createStatement();
+                int rs = stmt.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);;
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        message.setId((int) generatedKeys.getLong(1));
+                    }
+                    else {
+                        throw new SendMessageExeption("Creating user failed, no ID obtained", message);
+
+                    }
+                }
+            } catch (SQLException e) {
+                throw new SendMessageExeption("Erreur", message);
+            } finally {
+                if (stmt != null) {
+                        stmt.close();
+                    }
+                }
+            }catch (SQLException e) {
+                throw new SendMessageExeption("Erreur", message);
+            }
+
+
+        return message;
+    }
+
+
     private static void getLastMessageFromAllChannel(ApplicationData applicationData) throws SQLException {
         Connection con = applicationData.getConnection();
         Statement stmt = null;
@@ -119,6 +159,5 @@ public class MessageDTO {
         } finally {
             if (stmt != null) { stmt.close(); }
         }
-
     }
 }

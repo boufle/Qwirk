@@ -1,13 +1,13 @@
 package com.supinfo.qwirk.Database;
 
 import com.jcraft.jsch.JSchException;
+import com.supinfo.qwirk.CustomException.SendMessageExeption;
 import com.supinfo.qwirk.Entity.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,7 +26,7 @@ public class ApplicationData {
     Data data = null;
 
 
-    Timer notimeoutDB = null;
+    Timer notimeoutDB = new Timer();
     private Timestamp lastupdate = null;
 
     private ApplicationData() {
@@ -38,7 +38,6 @@ public class ApplicationData {
         try {
             if(!databaseConnection.isconected()){
                 databaseConnection.connect();
-                notimeoutDB = new Timer();
 
                 notimeoutDB.schedule( new TimerTask() {
                     public void run() {
@@ -108,6 +107,13 @@ public class ApplicationData {
         ArrayList<User> myContact = UserDTO.getContacts(this);
 
         this.data = new Data(channels,myChannels,myContact);
+
+     /*   try {
+            MessageDTO.sendmessage(this,new Message(null,null,"yehah", this.getCurrentUser(), myChannels.get(0)));
+        } catch (SendMessageExeption sendMessageExeption) {
+            sendMessageExeption.printStackTrace();
+        }*/
+
         startupdateMessages();
     }
 
@@ -121,6 +127,7 @@ public class ApplicationData {
             e.printStackTrace();
         }
 
+        //notimeoutDB.cancel();
 
         notimeoutDB.schedule( new TimerTask() {
                 public void run() {

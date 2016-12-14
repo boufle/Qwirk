@@ -20,10 +20,9 @@ public class FrameLoginScreen extends JFrame implements ActionListener {
     protected JTextField login = new JTextField();
     protected JPasswordField mdp = new JPasswordField();
     protected JButton connect = new JButton();
-    private ApplicationData applicationData;
+    private ApplicationData applicationData  = ApplicationData.getInstance();
 
-    public FrameLoginScreen(ApplicationData applicationData){
-        this.applicationData = applicationData;
+    public FrameLoginScreen(){
 
         setUndecorated(true);
         setSize(400,600);

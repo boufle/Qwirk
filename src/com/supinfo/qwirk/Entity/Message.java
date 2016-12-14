@@ -17,13 +17,15 @@ public class Message implements Serializable{
     Channel Channel;
     Boolean read = true;
 
-    public Message(int id, java.sql.Date date, String texte, User user, Channel channel) {
+    public Message(Integer id, java.sql.Date date, String texte, User user, Channel channel) {
         this.id = id;
         this.date = date;
         this.texte = texte;
         this.user = user;
         this.Channel = channel;
     }
+
+
 
     public Integer getId() {
         return id;
