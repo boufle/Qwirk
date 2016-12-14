@@ -36,7 +36,7 @@ public class GuiWindowsBarMenu extends JPanel{
         //test.setPreferredSize(new Dimension(90,2000));
         test.setAutoscrolls(true);
         scroll.setPreferredSize(new Dimension(90,200));
-        test.setLayout(new GridLayout(10,1));
+        test.setLayout(new GridLayout(20,1));
         for (Channel i: ApplicationData.getInstance().getData().getMyChannels()){
 
             test.add(new GuiWindowsBarChannel(i.getId()));

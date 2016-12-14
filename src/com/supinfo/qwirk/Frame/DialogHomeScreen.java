@@ -1,6 +1,5 @@
 package com.supinfo.qwirk.Frame;
 
-import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
 import com.supinfo.qwirk.Gui.utils.utils;
 

@@ -1,14 +1,10 @@
 package com.supinfo.qwirk.Frame;
 
 import com.supinfo.qwirk.Database.ApplicationData;
-import com.supinfo.qwirk.Gui.GuiChat;
 import com.supinfo.qwirk.Gui.GuiWindowsBar.GuiWindowsBar;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.geom.RoundRectangle2D;
 
 /**
  * Created by Boufle on 12/12/2016.
